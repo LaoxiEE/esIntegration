@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tyzj.mapper.PhoneMapper">
+    <sql id="mysql">
+        (phonenum, count, date)
+    </sql>
+
+    <insert id="InsertPhoneList">
+        insert into phone <include refid="mysql"/> values
+        <trim suffixOverrides=",">
+            <foreach collection="phonelist" item="item" >
+                (#{item.phonenum}, #{item.count}, #{item.date}),
+            </foreach>
+        </trim>
+    </insert>
+
+</mapper>
